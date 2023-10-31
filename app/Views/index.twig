@@ -1,0 +1,87 @@
+{% macro article_box(article) %}
+    <div class="article-box">
+        <a class="article-link" href="/UN/articles/{{ article.getId }}">{{ article.getTitle }}</a>
+        <span class="time-gap">{{ article.getTimeAdded }}</span>
+    </div>
+{% endmacro %}
+
+{% import _self as templates %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBA Players</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    {% block styles %}
+        <style>
+            body {
+                font-family: 'Roboto', sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f5f5f5;
+                color: #333;
+            }
+
+            h1 {
+                text-align: center;
+                margin-top: 2em;
+                margin-bottom: 1em;
+            }
+
+            ul {
+                list-style-type: none;
+                padding: 0;
+                width: 70%;
+                margin: 0 auto;
+            }
+
+            .article-box {
+                border: 1px solid #e0e0e0;
+                border-radius: 4px;
+                background-color: #fff;
+                padding: 15px;
+                margin-bottom: 20px;
+                display: flex;
+                align-items: center;
+                transition: background-color 0.3s;
+            }
+
+            .article-box:hover {
+                background-color: #f0f0f0;
+            }
+
+            .article-link {
+                flex-grow: 1;
+                color: #007BFF;
+                text-decoration: none;
+                font-weight: 700;
+            }
+
+            .article-link:hover {
+                text-decoration: underline;
+            }
+
+            .time-gap {
+                margin-left: 15px;
+                font-size: 0.9em;
+                color: #777;
+            }
+        </style>
+    {% endblock %}
+</head>
+
+<body>
+<h1>NBA Teams List</h1>
+<ul>
+    {% for article in articles %}
+        <li>
+            {{ templates.article_box(article) }}
+        </li>
+    {% endfor %}
+</ul>
+</body>
+
+</html>
